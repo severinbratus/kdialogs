@@ -4,22 +4,25 @@
 # - Place this file as /usr/local/bin/kdialog
 # - Set XDG_CURRENT_DESKTOP=KDE
 
-# To pick a directory in ranger, press q.
+# To pick a directory in nnn, press Space or Ctrl-J.
 
 ## Debugging
 #args="$@"
 #notify-send "kdialog $args"
-#echo "kdialog $args" >> /home/surin/log
+#echo "kdialog $args" >> $HOME/kdialog-log
 
+# $1 is the window title
 getopenfilename() {
-    $TERMINAL -t "$1" -e ranger --choosefile=/tmp/fileselect
-    cat /tmp/fileselect
+    $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
+    path=$(tail -n 1 /tmp/fileselect)
+    [ -f $path ] && echo $path
     rm /tmp/fileselect
 }
 
 getexistingdirectory() {
-    $TERMINAL -t "$1" -e ranger --choosedir=/tmp/fileselect
-    cat /tmp/fileselect
+    $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
+    path=$(tail -n 1 /tmp/fileselect)
+    [ -d $path ] && echo $path
     rm /tmp/fileselect
 }
 
@@ -28,6 +31,7 @@ getsavefilename() {
 }
 
 version() {
+    # impersonate the latest version
     echo "kdialog 21.12.1"
 }
 
