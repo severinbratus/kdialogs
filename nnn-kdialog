@@ -15,14 +15,14 @@
 getopenfilename() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
     path=$(tail -n 1 /tmp/fileselect)
-    [ -f $path ] && echo $path
+    [ -f $path ] && echo "$path"
     rm /tmp/fileselect
 }
 
 getexistingdirectory() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
     path=$(tail -n 1 /tmp/fileselect)
-    [ -d $path ] && echo $path
+    [ -d $path ] && echo "$path"
     rm /tmp/fileselect
 }
 
@@ -57,7 +57,7 @@ do
     esac
 done 2> /dev/null;
 
-title=${title:-ranger-kdialog}
+title=${title:-nnn-kdialog}
 
 ## Epic functional programming trick
 if ! [ -z "$fun" ]; then
