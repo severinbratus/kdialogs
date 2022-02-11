@@ -7,22 +7,22 @@
 # To pick a directory in nnn, press Space or Ctrl-J.
 
 ## Debugging
-#args="$@"
-#notify-send "kdialog $args"
-#echo "kdialog $args" >> $HOME/kdialog-log
+# args="$@"
+# notify-send "kdialog $args"
+# echo "kdialog $args" >> $HOME/kdialog-log
 
 # $1 is the window title
 getopenfilename() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
     path=$(tail -n 1 /tmp/fileselect)
-    [ -f $path ] && echo "$path"
+    [ -f "$path" ] && echo $path
     rm /tmp/fileselect
 }
 
 getexistingdirectory() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
     path=$(tail -n 1 /tmp/fileselect)
-    [ -d $path ] && echo "$path"
+    [ -d "$path" ] && echo $path
     rm /tmp/fileselect
 }
 
@@ -61,5 +61,5 @@ title=${title:-nnn-kdialog}
 
 ## Epic functional programming trick
 if ! [ -z "$fun" ]; then
-    echo "$($fun "$title" "$save_file")"
+    echo "$($fun "$title" "$save_file")" # | tee -a $HOME/kdialog-log
 fi
