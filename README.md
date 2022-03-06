@@ -12,8 +12,17 @@ The idea is to impersonate `kdialog` and implement their interface, `kdialog` be
 
 ### Issues
 
-- No way to cancel directory selection (and thus download) in `ranger`, because in `ranger` a directory is selected by quitting.
+`ranger`:
+- No way to cancel directory selection (and thus download), because in `ranger` a directory is selected by quitting.
 - Not possible to set the name of the saved file.
+
+`nnn` and `ranger`:
 - No option to download a webpage in full, with css, js, etc.
 - No mime filtering.
 - No way to select multiple files.
+
+### nnn-kialog
+
+Being my preference, `nnn-kdialog` has more features (for better or worse), namely:
+- Default download directory
+- Ability to set the filename with `dmenu`

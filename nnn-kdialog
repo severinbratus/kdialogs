@@ -31,7 +31,9 @@ getexistingdirectory() {
 getsavefilename() {
     [ -n dl_dir ] && dir="$dl_dir" || dir="$(getexistingdirectory "$1")"
 
-    [ -n "$dir" ] && echo "$dir/"$2""
+    fname=$(echo "$2" | dmenu)
+
+    [ -n "$dir" ] && [ -n "$fname" ] && echo "$dir/"$fname""
 }
 
 version() {
