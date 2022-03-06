@@ -11,6 +11,8 @@
 # notify-send "kdialog $args"
 # echo "kdialog $args" >> $HOME/kdialog-log
 
+dl_dir="$HOME/dl"
+
 # $1 is the window title
 getopenfilename() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
@@ -27,7 +29,12 @@ getexistingdirectory() {
 }
 
 getsavefilename() {
-    dir="$(getexistingdirectory "$1")"
+    if [ -n dl_dir ]; then
+        dir="$dl_dir"
+    else
+        dir="$(getexistingdirectory "$1")"
+    fi
+
     [ -n "$dir" ] && echo "$dir/"$2""
 }
 
