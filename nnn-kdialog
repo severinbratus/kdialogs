@@ -15,19 +15,20 @@
 getopenfilename() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
     path=$(tail -n 1 /tmp/fileselect)
-    [ -f "$path" ] && echo $path
+    [ -f "$path" ] && [ -f /tmp/fileselect ] && echo $path
     rm /tmp/fileselect
 }
 
 getexistingdirectory() {
     $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
     path=$(tail -n 1 /tmp/fileselect)
-    [ -d "$path" ] && echo $path
+    [ -d "$path" ] && [ -f /tmp/fileselect ] && echo $path
     rm /tmp/fileselect
 }
 
 getsavefilename() {
-    echo "$(getexistingdirectory "$1")/"$2""
+    dir="$(getexistingdirectory "$1")"
+    [ -n "$dir" ] && echo "$dir/"$2""
 }
 
 version() {
