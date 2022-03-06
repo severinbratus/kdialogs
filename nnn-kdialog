@@ -29,11 +29,7 @@ getexistingdirectory() {
 }
 
 getsavefilename() {
-    if [ -n dl_dir ]; then
-        dir="$dl_dir"
-    else
-        dir="$(getexistingdirectory "$1")"
-    fi
+    [ -n dl_dir ] && dir="$dl_dir" || dir="$(getexistingdirectory "$1")"
 
     [ -n "$dir" ] && echo "$dir/"$2""
 }
