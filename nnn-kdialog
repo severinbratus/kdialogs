@@ -28,12 +28,15 @@ getexistingdirectory() {
     rm /tmp/fileselect
 }
 
+# $2 is the default filename
 getsavefilename() {
     [ -n dl_dir ] && dir="$dl_dir" || dir="$(getexistingdirectory "$1")"
 
     fname=$(echo "$2" | dmenu)
+    # If user did not choose default, add extension
+    ! [ "$fname" == "$2" ] && fname="$fname"."${2#*.}"
 
-    [ -n "$dir" ] && [ -n "$fname" ] && echo "$dir/"$fname""
+    [ -n "$dir" ] && [ -n "$fname" ] && echo "$dir"/"$fname"
 }
 
 version() {
