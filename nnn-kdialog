@@ -34,7 +34,7 @@ getsavefilename() {
 
     fname=$(echo "$2" | dmenu)
     # If user did not choose default, add extension
-    ! [ "$fname" == "$2" ] && fname="$fname"."${2#*.}"
+    ! [ "$fname" == "$2" ] && [ -n "$fname" ] && fname="$fname"."${2#*.}"
 
     [ -n "$dir" ] && [ -n "$fname" ] && echo "$dir"/"$fname"
 }
