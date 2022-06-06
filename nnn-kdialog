@@ -24,7 +24,7 @@ getopenfilename() {
 }
 
 getexistingdirectory() {
-    $TERMINAL -t "$1" -e nnn -p /tmp/fileselect
+    $TERMINAL -t "$1" -e nnn -p /tmp/fileselect "$2"
     path=$(tail -n 1 /tmp/fileselect)
     [ -d "$path" ] && [ -f /tmp/fileselect ] && echo $path
     rm /tmp/fileselect
