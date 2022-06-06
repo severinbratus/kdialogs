@@ -32,7 +32,7 @@ getexistingdirectory() {
 
 # $2 is the default filename
 getsavefilename() {
-    [ -n dl_dir ] && dir="$dl_dir" || dir="$(getexistingdirectory "$1")"
+    [ -n dl_dir ] && dir="$(getexistingdirectory "$1")" || dir="$dl_dir"
 
     fname=$(echo "$2" | dmenu)
     # If user did not choose default, add extension
