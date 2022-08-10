@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# $1: The hovered file's name.
+# $2: The working directory (might differ from $PWD in case of symlinked paths; non-canonical).
+# $3: The picker mode output file (- for stdout) if nnn is executed as a file picker.
+
+# Write the name as selection
+echo "$2" > "$3"
+
+# Kill the parent `nnn` instance
+killall nnn
