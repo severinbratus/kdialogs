@@ -11,20 +11,20 @@
 # notify-send "kdialog $args"
 # echo "kdialog $args" >> $HOME/kdialog-log
 
-dl_dir="$HOME/dl"
+# dl_dir="$HOME/dl"
 
 # $1 is the window title
 # $2 is the default directory
 getopenfilename() {
     ! [ -d "$2" ] && dir="$HOME" || dir="$2"
-    $TERMINAL -t "$1" -e nnn -p /tmp/fileselect "$dir"
+    $TERMINAL -t "$1" -e nnn -A -p /tmp/fileselect "$dir"
     path=$(tail -n 1 /tmp/fileselect)
     [ -f "$path" ] && [ -f /tmp/fileselect ] && echo $path
     rm /tmp/fileselect
 }
 
 getexistingdirectory() {
-    $TERMINAL -t "$1" -e nnn -p /tmp/fileselect "$2"
+    $TERMINAL -t "$1" -e nnn -A -p /tmp/fileselect "$2"
     path=$(tail -n 1 /tmp/fileselect)
     [ -d "$path" ] && [ -f /tmp/fileselect ] && echo $path
     rm /tmp/fileselect

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+## NOTE: I have stopped developing this script, focusing instead on the `nnn` variant.
+
 ## Instructions
 # - Place this file as /usr/local/bin/kdialog
 # - Set XDG_CURRENT_DESKTOP=KDE
